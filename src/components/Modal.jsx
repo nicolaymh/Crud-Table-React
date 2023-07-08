@@ -3,12 +3,14 @@ import { useState } from "react";
 
 import "./Modal.css";
 
-export const Modal = ({ closeModal, onSubmit }) => {
-   const [formState, setFormState] = useState({
-      page: "",
-      description: "",
-      status: "live",
-   });
+export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
+   const [formState, setFormState] = useState(
+      defaultValue || {
+         page: "",
+         description: "",
+         status: "live",
+      }
+   );
 
    const [errors, setErrors] = useState("");
 
@@ -88,4 +90,5 @@ export const Modal = ({ closeModal, onSubmit }) => {
 Modal.propTypes = {
    closeModal: PropTypes.func.isRequired,
    onSubmit: PropTypes.func.isRequired,
+   defaultValue: PropTypes.any.isRequired,
 };

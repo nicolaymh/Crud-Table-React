@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
 
-export const Table = ({ rows, deleteRow }) => {
+export const Table = ({ rows, deleteRow, editRow }) => {
    return (
       <div className="table-wrapper">
          <table className="table">
@@ -34,7 +34,7 @@ export const Table = ({ rows, deleteRow }) => {
                                  className="delete-btn"
                                  onClick={() => deleteRow(idx)}
                               />
-                              <BsFillPencilFill />
+                              <BsFillPencilFill onClick={() => editRow(idx)} />
                            </span>
                         </td>
                      </tr>
@@ -49,4 +49,5 @@ export const Table = ({ rows, deleteRow }) => {
 Table.propTypes = {
    rows: PropTypes.array.isRequired,
    deleteRow: PropTypes.func.isRequired,
+   editRow: PropTypes.func.isRequired,
 };
