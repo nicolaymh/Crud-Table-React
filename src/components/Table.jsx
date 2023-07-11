@@ -16,7 +16,6 @@ export const Table = ({ rows, deleteRow, editRow }) => {
                   <th>Actions</th>
                </tr>
             </thead>
-
             <tbody>
                {rows.map((row, idx) => {
                   const statusText = row.status.charAt(0).toUpperCase() + row.status.slice(1);
@@ -28,13 +27,13 @@ export const Table = ({ rows, deleteRow, editRow }) => {
                         <td>
                            <span className={`label label-${row.status}`}>{statusText}</span>
                         </td>
-                        <td>
+                        <td className="fit">
                            <span className="actions">
                               <BsFillTrashFill
                                  className="delete-btn"
                                  onClick={() => deleteRow(idx)}
                               />
-                              <BsFillPencilFill onClick={() => editRow(idx)} />
+                              <BsFillPencilFill className="edit-btn" onClick={() => editRow(idx)} />
                            </span>
                         </td>
                      </tr>

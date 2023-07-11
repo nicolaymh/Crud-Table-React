@@ -11,7 +11,6 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
          status: "live",
       }
    );
-
    const [errors, setErrors] = useState("");
 
    const validateForm = () => {
@@ -19,13 +18,13 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
          setErrors("");
          return true;
       } else {
-         let errorsFields = [];
+         let errorFields = [];
          for (const [key, value] of Object.entries(formState)) {
             if (!value) {
-               errorsFields.push(key);
+               errorFields.push(key);
             }
          }
-         setErrors(errorsFields.join(", "));
+         setErrors(errorFields.join(", "));
          return false;
       }
    };
@@ -52,33 +51,29 @@ export const Modal = ({ closeModal, onSubmit, defaultValue }) => {
          }}
       >
          <div className="modal">
-            <form onSubmit={handleSubmit}>
+            <form>
                <div className="form-group">
                   <label htmlFor="page">Page</label>
-                  <input name="page" value={formState.page} onChange={handleChange} />
+                  <input name="page" onChange={handleChange} value={formState.page} />
                </div>
-
                <div className="form-group">
                   <label htmlFor="description">Description</label>
                   <textarea
                      name="description"
-                     value={formState.description}
                      onChange={handleChange}
+                     value={formState.description}
                   />
                </div>
-
                <div className="form-group">
                   <label htmlFor="status">Status</label>
-                  <select name="status" value={formState.status} onChange={handleChange}>
+                  <select name="status" onChange={handleChange} value={formState.status}>
                      <option value="live">Live</option>
                      <option value="draft">Draft</option>
                      <option value="error">Error</option>
                   </select>
                </div>
-
                {errors && <div className="error">{`Please include: ${errors}`}</div>}
-
-               <button type="submit" className="btn">
+               <button type="submit" className="btn" onClick={handleSubmit}>
                   Submit
                </button>
             </form>
